@@ -9,6 +9,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  if(req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
   const { question, history } = req.body;
 
   console.log('question', question);
